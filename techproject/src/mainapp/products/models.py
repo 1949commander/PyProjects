@@ -1,13 +1,14 @@
 from django.db import models
 
 TYPE_CHOICES = {
-    ('appetizers','appetizers'),
-    ('entrees','entrees'),
-    ('treats','treats'),
-    ('drinks','drinks'),
+    ('appetizers', 'appetizers'),
+    ('entrees', 'entrees'),
+    ('treats', 'treats'),
+    ('drinks', 'drinks'),
 }
 
-class Product (models.Model):
+
+class Product(models.Model):
     type = models.CharField(max_length=60, choices=TYPE_CHOICES)
     name = models.CharField(max_length=60, default="", blank=True, null=False)
     description = models.TextField(max_length=300, default="", blank=True)
@@ -18,7 +19,3 @@ class Product (models.Model):
 
     def __str__(self):
         return self.name
-
-
-
-
