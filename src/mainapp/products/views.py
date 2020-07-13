@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .forms import ProductForm
 from .models import Product
 
+
+
 def admin_console(request):
     products = Product.objects.all()
     return render(request, 'products/products_page.html', {'products': products})
@@ -22,13 +24,14 @@ def details(request, pk):
     else:
         return render(request, 'products/present_product.html', {'form': form})
 
+
 def delete(request, pk):
     pk = int(pk)
     item = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
         item.delete()
         return redirect('admin_console')
-    context = {"iten": item,}
+    context = {"item": item,}
     return render(request, "products/confirmDelete.html", context)
 
 
@@ -51,9 +54,7 @@ def createRecord(request):
     else:
         print(form.errors)
         form = ProductForm()
-
     context = {
         'form': form,
     }
     return render(request, 'products/createRecord.html', context)
-
